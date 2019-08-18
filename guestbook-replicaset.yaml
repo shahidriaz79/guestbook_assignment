@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: guestbook-replicaset
+  labels:
+    app: guestbook
+
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+
+  template:
+    metadata:
+      labels:
+        app: guestbook
+
+    spec:
+      containers:
+      - name: guestbook
+        image: k8s.gcr.io/guestbook:v3
+        ports:
+        - name: http-server
+          containerPort: 3000
